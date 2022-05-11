@@ -33,5 +33,6 @@ class Preprocessing:
                       interpolated_data.skew().rename('skew'),
                       interpolated_data.kurt().rename('kurt'),
                      ], axis=1).T
+        
 
 
