@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 
-logging.basicConfig(level=logging.DEBUG)
+
 
 class Preprocessing:
     def __init__(self, dataset) -> None:
@@ -12,7 +12,7 @@ class Preprocessing:
         'purpose: checks for missing value in dataset'
         missing_value_count = self.data.isnull().sum().sum()  # chaining methods together
         if missing_value_count > 0:
-            logging.warning(f'{missing_value_count} missing values found. Using interpolation method to fill missing values')
+            print(f'---> {missing_value_count} missing values found. Using interpolation method to fill missing values')
             self.interpolated_data = self.data.interpolate(method ='linear', limit_direction ='forward')
 
             
@@ -20,24 +20,25 @@ class Preprocessing:
             #check if misssing value is still present in interpolated data
             missing_value_count = self.interpolated_data.isnull().sum().sum()
             if missing_value_count > 0:
-                logging.warning(f'{missing_value_count} missing values found after using initial interpolation method. Dropping rows of missing values')
+                print(f'---> {missing_value_count} missing values found after using initial interpolation method. Dropping rows of missing values')
                 self.interpolated_data = self.interpolated_data.dropna()
             
-            logging.warning(f'Missing Value problem solved..Data is clean and ready to use')
+            print(f'---> Missing Value problem solved..Data is clean and ready to use')
             return self.interpolated_data
         else:
-            logging.info(f'No Missing Value was found data is clean and ready to use')
-        
+            print(f'---> No Missing Value was found data is clean and ready to use')
+            return self.data
+
     def descriptives(self, interpolated_data):
         'purpose:finds the descriptives of the datasets'
-        logging.info(f'Showing descriptive statistics of the dataset')
-        pd.concat([interpolated_data.describe().T,
+        print(f'---> Showing descriptive statistics of the dataset')
+        print(pd.concat([interpolated_data.describe().T,
                       interpolated_data.median().rename('median'),
                       interpolated_data.skew().rename('skew'),
                       interpolated_data.kurt().rename('kurt'),
-                     ], axis=1).T
+                     ], axis=1).T)
     
-    def desc_freq(self, *args):
+    def desc_freq(self, *args, plot_):
         "Find their frequencies and dependencies through bar plots,  gro u p e d b a r p lo ts ,pie-charts, etc"
         
 
