@@ -1,5 +1,8 @@
 import logging
 import pandas as pd
+
+logging.basicConfig(level=logging.DEBUG)
+
 class Preprocessing:
     def __init__(self, dataset) -> None:
         self.data = dataset
@@ -23,7 +26,7 @@ class Preprocessing:
             logging.warning(f'Missing Value problem solved..Data is clean and ready to use')
             return self.interpolated_data
         else:
-            logging.warning(f'No Missing Value was found data is clean and ready to use')
+            logging.info(f'No Missing Value was found data is clean and ready to use')
         
     def descriptives(self, interpolated_data):
         'purpose:finds the descriptives of the datasets'
@@ -33,6 +36,10 @@ class Preprocessing:
                       interpolated_data.skew().rename('skew'),
                       interpolated_data.kurt().rename('kurt'),
                      ], axis=1).T
+    
+    def desc_freq(self, *args):
+        "Find their frequencies and dependencies through bar plots,  gro u p e d b a r p lo ts ,pie-charts, etc"
         
+
 
 
