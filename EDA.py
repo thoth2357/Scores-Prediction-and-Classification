@@ -37,9 +37,7 @@ class Preprocessing:
                       interpolated_data.skew().rename('skew'),
                       interpolated_data.kurt().rename('kurt'),
                      ], axis=1).T)
-    
-    def desc_freq(self, *args, plot_):
-        "Find their frequencies and dependencies through bar plots,  gro u p e d b a r p lo ts ,pie-charts, etc"
+
         
 
 
