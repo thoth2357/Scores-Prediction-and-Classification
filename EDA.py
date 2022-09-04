@@ -13,7 +13,8 @@ class Preprocessing:
         missing_value_count = self.data.isnull().sum().sum()  # chaining methods together
         if missing_value_count > 0:
             print(f'---> {missing_value_count} missing values found. Using interpolation method to fill missing values')
-            self.interpolated_data = self.data.interpolate(method ='linear', limit_direction ='forward')
+            self.interpolated_data = self.data.interpolate(method ='linear', 
+            limit_direction ='forward')
 
             
             #More Rigid Process
